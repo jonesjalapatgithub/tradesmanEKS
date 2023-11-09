@@ -1,11 +1,13 @@
 package com.jonesjalapat.blog.tradesman.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.constraints.NotBlank;
 import lombok.*;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "person")
@@ -55,4 +57,8 @@ public class PersonEntity extends BaseDataEntityWithAudit {
   @Column(nullable = false)
   @NotBlank(message = "Name is required")
   private boolean active;
+
+  @Type(JsonType.class)
+  @Column(columnDefinition = "jsonb")
+  private String resume;
 }

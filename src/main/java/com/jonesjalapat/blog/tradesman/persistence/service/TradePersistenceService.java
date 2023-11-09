@@ -1,5 +1,8 @@
 package com.jonesjalapat.blog.tradesman.persistence.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jonesjalapat.blog.tradesman.model.Tradesman;
 import com.jonesjalapat.blog.tradesman.persistence.dto.TradeResponse;
 import com.jonesjalapat.blog.tradesman.persistence.entity.PersonEntity;
@@ -23,7 +26,7 @@ public class TradePersistenceService {
   private final PersonRepository personRepository;
 
   @Transactional()
-  public Long createTradesman(Tradesman tradesman) {
+  public Long createTradesman(Tradesman tradesman) throws JsonProcessingException {
     String[] trades = tradesman.getTrade();
     List<TradesmanEntity> tradesmanEntities = new ArrayList<>();
     PersonEntity personEntity = createPersonEntity(tradesman);
@@ -39,7 +42,7 @@ public class TradePersistenceService {
     return response.get(0).getPersonEntity().getId();
   }
 
-  private PersonEntity createPersonEntity(Tradesman tradesman) {
+  private PersonEntity createPersonEntity(Tradesman tradesman) throws JsonProcessingException {
     PersonEntity personEntity = new PersonEntity();
     personEntity.setCity(tradesman.getPerson().getCity());
     personEntity.setContact(tradesman.getPerson().getContact());
@@ -48,6 +51,12 @@ public class TradePersistenceService {
     personEntity.setName(tradesman.getPerson().getName());
     personEntity.setActive(true);
     personEntity.setArea(tradesman.getPerson().getArea());
+    JsonNode resumeFields = tradesman.getPerson().getResume();
+    if (resumeFields != null) {
+      ObjectMapper objectMapper = new ObjectMapper();
+      String json = objectMapper.writeValueAsString(resumeFields);
+      personEntity.setResume(json);
+    }
     return personEntity;
   }
 

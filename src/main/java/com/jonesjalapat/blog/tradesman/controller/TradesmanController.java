@@ -1,7 +1,8 @@
 package com.jonesjalapat.blog.tradesman.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.jonesjalapat.blog.tradesman.model.ListOfTradeResponse;
 import com.jonesjalapat.blog.tradesman.model.Tradesman;
-import com.jonesjalapat.blog.tradesman.persistence.dto.TradeResponse;
 import com.jonesjalapat.blog.tradesman.service.TradesmanService;
 import java.util.List;
 import javax.validation.Valid;
@@ -24,7 +25,8 @@ public class TradesmanController {
    * @return the response entity
    */
   @PostMapping(value = "/tradesman")
-  public ResponseEntity<Long> createTradesman(@Valid @RequestBody Tradesman tradesman) {
+  public ResponseEntity<Long> createTradesman(@Valid @RequestBody Tradesman tradesman)
+      throws JsonProcessingException {
     Long response = tradesmanService.createTradesman(tradesman);
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
@@ -36,7 +38,8 @@ public class TradesmanController {
    * @return the response entity
    */
   @GetMapping(value = "/tradesman/{trade}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<List<TradeResponse>> getTradesman(@Valid @PathVariable String trade) {
+  public ResponseEntity<List<ListOfTradeResponse>> getTradesman(@Valid @PathVariable String trade)
+      throws JsonProcessingException {
     return ResponseEntity.status(HttpStatus.OK).body(tradesmanService.getListOfTrades(trade));
   }
 }

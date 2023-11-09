@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  app:
+    image: 'tradesman:latest'
+    build:
+      context: .
+    container_name: tradesman_service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/tradesman
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+  db:
+    image: 'postgres:alpine'
+    container_name: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=tradesman
+      - POSTGRES_PASSWORD=password

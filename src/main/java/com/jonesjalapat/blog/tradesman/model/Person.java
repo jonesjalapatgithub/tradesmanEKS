@@ -1,6 +1,7 @@
 package com.jonesjalapat.blog.tradesman.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.JsonNode;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import lombok.Data;
@@ -26,4 +27,6 @@ public class Person {
 
   @NotBlank(message = "contact is required")
   private String contact;
+
+  private JsonNode resume;
 }
