@@ -11,12 +11,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.CreateBucketRequest;
 
 @RestController
 @AllArgsConstructor
 public class TradesmanController {
 
   private final TradesmanService tradesmanService;
+
+  private final S3Client s3Client;
 
   /**
    * Creates an entry of Tradesman.
@@ -28,6 +32,13 @@ public class TradesmanController {
   public ResponseEntity<Long> createTradesman(@Valid @RequestBody Tradesman tradesman)
       throws JsonProcessingException {
     Long response = tradesmanService.createTradesman(tradesman);
+
+    String bucketName = "tradesman-bucket2";
+
+    CreateBucketRequest bucketRequest = CreateBucketRequest.builder().bucket(bucketName).build();
+
+    s3Client.createBucket(bucketRequest);
+
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
 

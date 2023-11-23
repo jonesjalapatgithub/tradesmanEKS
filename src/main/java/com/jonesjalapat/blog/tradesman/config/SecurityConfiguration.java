@@ -16,7 +16,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class H2SecurityConfiguration {
+public class SecurityConfiguration {
 
   @Bean
   public UserDetailsService inMemoryUserDetailsManager() {
@@ -57,9 +57,4 @@ public class H2SecurityConfiguration {
     http.headers().frameOptions().disable();
     return http.build();
   }
-
-  //    @Bean
-  //    public WebSecurityCustomizer webSecurityCustomizer() {
-  //        return (web) -> web.ignoring().requestMatchers("/resources/**", "/static/**");
-  //    }
 }

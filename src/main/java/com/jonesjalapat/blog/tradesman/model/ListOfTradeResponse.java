@@ -18,17 +18,4 @@ public class ListOfTradeResponse {
   private boolean active;
   private String yoe;
   private String status;
-
-  /*
-
-    "type": "CARPENTER",
-    "name": "Babu ",
-    "country": "INDIA",
-    "state": "KARNATAKA",
-    "city": "BENGALURU",
-    "contact": "9992233835",
-    "active": true,
-    "resume": "{\"yoe\": \"15\", \"status\": \"citizen\", \"education\": [\"Skilled Trades Diploma\"], \"experience\": [\"5 years of Plumbing Experience working for KPT group Thrissur\", \"3 years of Electrician & Plumbing experience with ESAF Thrissur\"], \"certification\": [\"Expert in Plumbing works from KAPE\"]}"
-  }
-     */
 }
