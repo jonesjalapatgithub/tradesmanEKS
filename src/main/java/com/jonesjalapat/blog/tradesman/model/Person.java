@@ -28,5 +28,8 @@ public class Person {
   @NotBlank(message = "contact is required")
   private String contact;
 
+  @NotBlank(message = "avatar is required")
+  private String avatar;
+
   private JsonNode resume;
 }

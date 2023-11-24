@@ -42,6 +42,9 @@
             <column name="active" type="boolean" >
                 <constraints nullable="false" />
             </column>
+            <column name="avatar" type="varchar(255)" >
+                <constraints nullable="false" />
+            </column>
             <column name="resume" type="jsonb">
                 <constraints nullable="true" />
             </column>

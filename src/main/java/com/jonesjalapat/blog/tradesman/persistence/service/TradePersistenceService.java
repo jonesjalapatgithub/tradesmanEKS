@@ -51,6 +51,7 @@ public class TradePersistenceService {
     personEntity.setName(tradesman.getPerson().getName());
     personEntity.setActive(true);
     personEntity.setArea(tradesman.getPerson().getArea());
+    personEntity.setAvatar(tradesman.getPerson().getAvatar());
     JsonNode resumeFields = tradesman.getPerson().getResume();
     if (resumeFields != null) {
       ObjectMapper objectMapper = new ObjectMapper();

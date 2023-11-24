@@ -13,3 +13,7 @@ spring:
 logging:
   level:
     liquibase: INFO
+
+
+bucketname : tradesman-bucket
+region : us-east-2

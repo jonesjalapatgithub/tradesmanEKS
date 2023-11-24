@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TradesmanRepository extends JpaRepository<TradesmanEntity, Long> {
   @Query(
-      "select new com.jonesjalapat.blog.tradesman.persistence.dto.TradeResponse(te.type, pe.name, pe.country, pe.state, pe.city, pe.contact, pe.active, pe.resume) "
+      "select new com.jonesjalapat.blog.tradesman.persistence.dto.TradeResponse(te.type, pe.name, pe.country, pe.state, pe.city, pe.contact, pe.active, pe.avatar, pe.resume) "
           + " from TradeEntity te "
           + " left join TradesmanEntity tde on tde.tradeEntity.id = te.id "
           + " left join PersonEntity pe on tde.personEntity.id  = pe.id"

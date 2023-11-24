@@ -15,5 +15,6 @@ public class TradeResponse {
   private String city;
   private String contact;
   private boolean active;
+  private String avatar;
   private Object resume;
 }

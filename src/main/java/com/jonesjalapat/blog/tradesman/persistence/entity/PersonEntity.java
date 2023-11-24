@@ -58,6 +58,10 @@ public class PersonEntity extends BaseDataEntityWithAudit {
   @NotBlank(message = "Name is required")
   private boolean active;
 
+  @Column(nullable = false)
+  @NotBlank(message = "avatar is required")
+  private String avatar;
+
   @Type(JsonType.class)
   @Column(columnDefinition = "jsonb")
   private String resume;

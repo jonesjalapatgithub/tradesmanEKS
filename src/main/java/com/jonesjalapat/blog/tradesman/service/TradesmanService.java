@@ -16,12 +16,14 @@ public class TradesmanService {
 
   private final TradePersistenceService tradePersistenceService;
 
+  private final ResponseMapper responseMapper;
+
   public Long createTradesman(Tradesman tradesman) throws JsonProcessingException {
     return tradePersistenceService.createTradesman(tradesman);
   }
 
   public List<ListOfTradeResponse> getListOfTrades(String trade) throws JsonProcessingException {
     List<TradeResponse> tradeResponses = tradePersistenceService.getListOfTrades(trade);
-    return new ResponseMapper().mapResponse(tradeResponses);
+    return responseMapper.mapResponse(tradeResponses);
   }
 }

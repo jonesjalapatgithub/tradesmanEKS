@@ -16,6 +16,7 @@ public class ListOfTradeResponse {
   private String city;
   private String contact;
   private boolean active;
+  private String avatar;
   private String yoe;
   private String status;
 }
