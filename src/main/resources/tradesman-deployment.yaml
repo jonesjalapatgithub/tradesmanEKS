@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tradesman-deployment
+  namespace: tradesman
+  labels:
+    app: tradesman-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tradesman-app
+  template:
+    metadata:
+      labels:
+        app: tradesman-app
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                      - amd64
+                      - arm64
+      containers:
+        - name: tradesman-container
+          image: jonesjalapatgithub/tradesman:avatar9
+          env:
+            - name: URL
+              value: "jdbc:postgresql://database-1.cluster-ctmy5ztkjoww.us-east-2.rds.amazonaws.com:5432/postgres"
+            - name: USERNAME
+              value: "postgres"
+            - name: PASSWORD
+              value: "password"
+          ports:
+            - name: http
+              containerPort: 80
+          imagePullPolicy: IfNotPresent
+      nodeSelector:
+        kubernetes.io/os: linux

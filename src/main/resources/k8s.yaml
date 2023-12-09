@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tradesman-pod
+  labels:
+    app: tradesman
+spec:
+  containers:
+    - name: tradesman-container
+      image: jonesjalapatgithub/tradesman:avatar8
+      ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tradesman-svc
+spec:
+  selector:
+    app: tradesman
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

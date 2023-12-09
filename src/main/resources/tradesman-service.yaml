@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tradesman-service
+  namespace: tradesman
+  labels:
+    app: tradesman-app
+spec:
+  selector:
+    app: tradesman-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

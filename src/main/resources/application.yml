@@ -1,11 +1,11 @@
 spring:
   profiles:
-    active: dev
+    active: prod
   datasource:
     driver-class-name: org.postgresql.Driver
-    username: postgres
-    url: jdbc:postgresql://tradesman.ctmy5ztkjoww.us-east-2.rds.amazonaws.com:5432/postgres
-    password: password
+    username: ${USERNAME}
+    url: ${URL}
+    password: ${PASSWORD}
   jpa:
     properties:
       hibernate:
@@ -13,7 +13,8 @@ spring:
 logging:
   level:
     liquibase: INFO
-
+server:
+  port : 80
 
 bucketname : tradesman-bucket
 region : us-east-2
